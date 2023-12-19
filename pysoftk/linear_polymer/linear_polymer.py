@@ -104,6 +104,7 @@ class Lp:
        """    
 
        mol=self.mol
+       cids = AllChem.EmbedMultipleConfs(mol,1)
        CanonicalizeConformer(mol.GetConformer())
        
        n_copies=self.n_copies
@@ -234,8 +235,9 @@ class Lp:
        #Using PDB object to preserve bond information
        last_rdkit=Chem.MolToPDBBlock(mol1)
        mol_new=pb.readstring('pdb', last_rdkit)
-
+       mol_new.make3D()
        last_mol=ff_ob_relaxation(mol_new, FF, int(iter_ff))
        rot_mol=rotor_opt(last_mol, FF, int(rot_steps))
 
        return rot_mol
+       #return last_mol

@@ -67,7 +67,7 @@ def rotor_opt(mol, FF="MMFF94", rot_steps=125):
     ff.FastRotorSearch()
     
     # N cycles, each with M forcefield ops
-    ff.WeightedRotorSearch(int(rot_steps),int(np.ceil(rot_steps/2.0))) 
+    #ff.WeightedRotorSearch(int(rot_steps),int(np.ceil(rot_steps/2.0))) 
     ff.GetCoordinates(mol.OBMol)
 
     return mol 
